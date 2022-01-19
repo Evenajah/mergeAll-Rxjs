@@ -8,8 +8,11 @@ import {
   switchMap,
 } from 'rxjs/operators';
 
-const x = of(of(100), of(200));
+const x = of(100, 200);
 
-x.pipe(mergeAll()).subscribe((value) => console.log({ value }));
+x.pipe(
+  map((res) => of(res)),
+  mergeAll()
+).subscribe((value) => console.log({ value }));
 
 //switchAll() = switchMap((value) => value)
